@@ -21,7 +21,8 @@ const ReadingPage = (props: readingPageProps) => {
 
     const searchDictionary = (e: React.MouseEvent<HTMLSpanElement>) => {
         e.preventDefault();
-        window.open(getUrl(language, e.target.textContent), '_blank');
+        const text = (e.target as HTMLSpanElement).textContent;
+        window.open(getUrl(language, text || ''), '_blank');
     };
 
     const handleRefresh = (e: React.MouseEvent<HTMLButtonElement>) => {
