@@ -9,7 +9,7 @@ export type ReadingPageResponse =  {
 
 
 
-const API_BASE_URL = "https://68.183.107.242:5000/"
+const API_BASE_URL = "https://languagexyz123.store/"
 
 const apiService = axios.create({
     baseURL: API_BASE_URL,
