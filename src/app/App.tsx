@@ -1,12 +1,23 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import ReadingPage from './routes/readingPage';
+import HomePage from './pages/HomePage';
+import ReadingPage from './pages/ReadingPage';
+
 
 function App() {
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage/>
+  },
+  {
+    path: '/reading',
+    element: <ReadingPage/>
+  },
+])
   return (
-    <div className="font-sans bg-zinc-100 h-screen w-screen border-2 flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-bold mb-4">Untitled Language Application</h1>
-      <ReadingPage readingLevel='Intermediate' language='french' />
-    </div>
+      <RouterProvider router={router}/>
   );
 }
 
