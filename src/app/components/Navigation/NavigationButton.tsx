@@ -7,7 +7,7 @@ interface NavigationButtonProps {
     disabled?: boolean
 }
 
-export const NavigationButton : React.FC<NavigationButtonProps> = ({path, text, state = {}, disabled = true}) => {
+export const NavigationButton : React.FC<NavigationButtonProps> = ({path, text, state = {}, disabled = false}) => {
 
     const navigate = useNavigate()
     
