@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import { getReadingPage } from "../../types/api";
 import { BeatLoader } from 'react-spinners';
-import getUrl from "../utils/dictionaties";
+import getUrl from "../utils/Dictionaries";
+import Container from "../components/Containers/Container";
+import { useLocation, useNavigate } from "react-router-dom";
+import { NavigationButton } from "../components/Navigation/NavigationButton";
 
-interface readingPageProps {
-    readingLevel: string;
-    language: string;
-}
 
-const ReadingPage = (props: readingPageProps) => {
 
+const ReadingPage = () => {
+
+    const navigate = useNavigate()
     const [text, setText] = useState("");
     const [storyTitle, setStoryTitle] = useState("");
     const [refresh, setRefresh] = useState(false);
-    const [language, setLanguage] = useState("French");
+    const location = useLocation()
+    const {language, level} = location.state || {}
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setLanguage(e.target.value);
-    };
 
     const searchDictionary = (e: React.MouseEvent<HTMLSpanElement>) => {
         e.preventDefault();
@@ -41,9 +40,7 @@ const ReadingPage = (props: readingPageProps) => {
         try {
             setText("");
             setStoryTitle("");
-
-            const response = await getReadingPage(props.readingLevel, language);
-            console.log(response);
+            const response = await getReadingPage(level, language);
             setText(response!.text);
             setStoryTitle(response!.title);
         } catch (error) {
@@ -52,12 +49,13 @@ const ReadingPage = (props: readingPageProps) => {
     };
 
     useEffect(() => {
+        if (language == "" || level == "") navigate("/", {state: {language,level} } )
         fetchData();
     }, [refresh]);
 
     return (
-        <>
-            <div className="bg-white rounded-xl w-6/8 h-7/8 items-center justify-center flex flex-col">
+        <>  
+        <Container>
                 {storyTitle == "" ? (
                     <>
                         <h1 className="text-xl">Fetching text</h1>
@@ -66,28 +64,16 @@ const ReadingPage = (props: readingPageProps) => {
                 ) : (
                     <>
                         <h1 className="text-center text-3xl">{storyTitle}</h1>
-                        <p className="center text-4xl px-10">{renderTextWithHoverEffect(text)}</p>
-                        <div className="flex items-center space-x-4">
-                            <div>
-                                <label htmlFor="language">Choose a language: </label>
-                                <select
-                                    id="language"
-                                    value={language}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Select a language</option>
-                                    <option value="french">French</option>
-                                    <option value="spanish">Spanish</option>
-                                </select>
-                                <p>Selected language: {language}</p>
-                            </div>
-                            <button onClick={handleRefresh} className="text-2xl py-2 flex items-center justify-center cursor-pointer bg-cyan-600 px-10 rounded-full text-white">
-                                REFRESH
-                            </button>
+                        <p className="overflow-scroll center text-4xl px-10">{renderTextWithHoverEffect(text)}</p>
+                        <div className="mt-auto flex gap-6">
+                        <button onClick={handleRefresh} className="text-2xl py-2 flex items-center justify-center cursor-pointer bg-cyan-500 px-10 rounded-full text-white">
+                            REFRESH
+                        </button>
+                        <NavigationButton path="/" text="HOME"/>
                         </div>
                     </>
                 )}
-            </div>
+             </Container>
         </>
     );
 };

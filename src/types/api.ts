@@ -7,8 +7,6 @@ export type ReadingPageResponse =  {
 
 }
 
-
-
 const API_BASE_URL = "https://languagexyz123.store/"
 
 const apiService = axios.create({
@@ -19,6 +17,8 @@ export const getReadingPage = async (readingLevel: string, language: string)
 : Promise<ReadingPageResponse | null>   => {
     try {
 
+        console.log(language)
+
         const response = await apiService.post("/readingPage",{
             reading_level: readingLevel,
             language: language,
@@ -27,10 +27,8 @@ export const getReadingPage = async (readingLevel: string, language: string)
 
         const rawData = response.data;
         
-        // Remove markdown formatting (```json\n and the closing backticks)
         let cleanJsonString = rawData.replace(/^```json\n|\n```$/g, '');
 
-// Parse the cleaned string into a JSON object
         let jsonResponse = JSON.parse(cleanJsonString);
 
         return jsonResponse;
