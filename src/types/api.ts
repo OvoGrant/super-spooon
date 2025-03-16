@@ -22,11 +22,10 @@ export type TranslationPageResponse = {
     text: string
     fragments: Fragment[]
 }
-const API_TEST_URL = "http://127.0.0.1:5000/"
 const API_BASE_URL = "https://languagexyz123.store/"
 
 const apiService = axios.create({
-    baseURL: API_TEST_URL,
+    baseURL: API_BASE_URL
 })
 
 export const gradeTranslationPage = async () => {

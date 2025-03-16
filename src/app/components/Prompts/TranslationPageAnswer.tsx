@@ -6,24 +6,6 @@ type TranslationPageAnswerProps = {
     answers: string[]
 }
 
-// Function to generate diff between user's translation and correct answer
-const generateDiff = (userTranslation: string, correctAnswer: string) => {
-    // Convert both strings to lowercase and trim for comparison
-    const userWords = userTranslation.toLowerCase().trim().split(/\s+/);
-    const correctWords = correctAnswer.toLowerCase().trim().split(/\s+/);
-    
-    // Create spans for each word with appropriate color
-    return correctWords.map((word, index) => {
-        const isMatch = userWords.includes(word);
-        const className = isMatch ? "text-green-200" : "text-red-200 font-bold";
-        return (
-            <span key={`${word}-${index}`} className={className}>
-                {word}{index < correctWords.length - 1 ? " " : ""}
-            </span>
-        );
-    });
-};
-
 const TranslationPageAnswer: React.FC<TranslationPageAnswerProps> = ({originalPhrase, translation, answers}) => {
     // The first answer is considered the correct one
     const correctAnswer = answers[0];

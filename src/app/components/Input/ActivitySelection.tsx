@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ACTIVITIES } from "../../utils/Dictionaries";
 
 interface ActivitySelectionProps {
