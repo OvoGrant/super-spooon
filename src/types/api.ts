@@ -39,7 +39,7 @@ export type TranslationPageResponse = {
     text: string
     fragments: TranslationFragment[]
 }
-const API_BASE_URL = "http://languagexyz123.store/"
+const API_BASE_URL = "https://languagexyz123.store/"
 
 const apiService = axios.create({
     baseURL: API_BASE_URL
