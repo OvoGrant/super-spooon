@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import Container from "../components/Containers/Container"
 import NavigationButton from "../components/Navigation/NavigationButton"
-import {Fragment, getTranslationGrade } from "../../types/api";
+import {getTranslationGrade, TranslationFragment } from "../../types/api";
 import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 const TranslationGradePage = () => {
@@ -14,9 +14,7 @@ const TranslationGradePage = () => {
 
     if (!(answers && fragments && title && language &&  level)) navigate("/")
 
-        console.log(fragments)
-
-
+    
     const fetchData = async () => {
         const response = await getTranslationGrade(language, fragments, answers, level)
         if (response) {
@@ -54,7 +52,7 @@ const TranslationGradePage = () => {
             <div className="bg-cyan-500 p-4 mb-4 rounded-lg h-1/2">
             <h3 className="white font-bold">Correct translation</h3>
             <p>{
-            fragments.map( (fragment : Fragment) =>{
+            fragments.map( (fragment : TranslationFragment) =>{
                 return fragment.translations[0]
             }).join(" ")}
             </p>
