@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Container from "../components/Containers/Container";
 import { useLocation } from "react-router-dom";
-import { getTranslationPage, Fragment } from "../../types/api";
+import { getTranslationPage, TranslationFragment } from "../../types/api";
 import ActivityTextField from "../components/Input/ActivityTextField";
 import TranslationPageActivityPrompt from "../components/Prompts/TranslationPageActivityPrompt";
 import { BeatLoader } from "react-spinners";
@@ -12,7 +12,7 @@ const TranslationPage = () => {
 
     const [title, setTitle] = useState("")
     const [text, setText] = useState("")
-    const [fragments, setFragments] = useState<Fragment[]>([])
+    const [fragments, setFragments] = useState<TranslationFragment[]>([])
     const [answers, setAnswers] = useState<string[]>([])
     const [currentAnswer, setCurrentAnswer] = useState("")
     const location = useLocation()

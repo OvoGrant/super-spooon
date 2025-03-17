@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import ReadingPage from './pages/ReadingPage';
 import TranslationPage from './pages/TranslationPage';
 import TranslationGradePage from './pages/TranslationGradePage';
+import ListeningPage from './pages/ListeningPage';
+import ListeningGradePage from './pages/ListeningGragePage';
 
 
 function App() {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
   {
     path:"/translationgrade",
     element: <TranslationGradePage/>
+  },
+  {
+    path: "/listening",
+    element: <ListeningPage/>
+  },
+  {
+    path:"/listeninggrade",
+    element: <ListeningGradePage/>
   }
 ])
   return (
