@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import useWebSocket from 'react-use-websocket';
 import Container from '../components/Containers/Container';
-import { v4 as uuidv4 } from 'uuid';
 import NavigationButton from '../components/Navigation/NavigationButton';
 
 interface RealChatPageProps {
@@ -14,13 +13,11 @@ interface Message {
     sent: boolean
 }
 
-const WebSocketApp : React.FC<RealChatPageProps> =  ({ uuid})  => {
+const WebSocketApp : React.FC<RealChatPageProps> =  ({language, uuid})  => {
 
   const [messages, setMessages] = useState<Message[]>([]);
-  const [language, setLanguage] = useState('')
-  const [sentMessage, setSentMessage] = useState<string[]>([])
   const [inputMessage, setInputMessage] = useState<string>('');
-  const {sendMessage, lastMessage, readyState} = useWebSocket(import.meta.env.VITE_WS_URL, {
+  const {sendMessage, } = useWebSocket(import.meta.env.VITE_WS_URL, {
 
     
     onOpen: () => {
