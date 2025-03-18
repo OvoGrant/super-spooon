@@ -7,6 +7,8 @@ import { NavigationButton } from "../components/Navigation/NavigationButton"
 
 const HomePage = () => {
 
+    console.log(import.meta.env)
+
     const [language, setLanguage] = useState("")
     const [level, setLevel] = useState("A1")
     const [activity, setActivity] = useState("READING")
@@ -27,7 +29,10 @@ const HomePage = () => {
            <LanguageSelection language={language} handleChange={handleLanguageChange}/>
            <LevelSelection selectedLevel={level} handleChange={handleLevelChange}/>
            <ActivitySelection  selectedActivity={activity} setSelectedActivity={setActivity}/>
+           <div className="flex gap-4">
            <NavigationButton disabled={submitDisabled} state={{state: {language, level, activity}}} path={activity} text="Submit" />
+           <NavigationButton disabled={false} path={"/realChat"} text="Chat"/>
+           </div>
         </Container>
     )
 }

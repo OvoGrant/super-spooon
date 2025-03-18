@@ -39,10 +39,10 @@ export type TranslationPageResponse = {
     text: string
     fragments: TranslationFragment[]
 }
-const API_BASE_URL = "https://languagexyz123.store/"
+
 
 const apiService = axios.create({
-    baseURL: API_BASE_URL
+    baseURL: import.meta.env.VITE_API_URL
 })
 
 export const getListeningPageGrade = async (original_text: string[], answers: string[])

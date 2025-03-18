@@ -6,6 +6,8 @@ import TranslationPage from './pages/TranslationPage';
 import TranslationGradePage from './pages/TranslationGradePage';
 import ListeningPage from './pages/ListeningPage';
 import ListeningGradePage from './pages/ListeningGragePage';
+import RealChatPage from './pages/RealChatPage';
+import { v4 as uuidv4 } from 'uuid';
 
 
 function App() {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
   {
     path:"/listeninggrade",
     element: <ListeningGradePage/>
+  },
+  {
+    path:"/realchat",
+    element: <RealChatPage uuid={uuidv4()} language='french'/>
   }
 ])
   return (
